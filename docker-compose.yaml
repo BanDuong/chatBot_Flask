@@ -1,7 +1,19 @@
 services:
     web:
       build: .
+      image: "chatbot:latest"
+      container_name: "chatbot"
       ports:
         - "8000:5000"
-    # redis:
-    #   image: "redis:alpine"
+      depends_on:
+        - postgres
+
+    postgres:
+      image: "postgres:16-alpine"
+      container_name: "postgres"
+      environment:
+        POSTGRES_USER: "postgres"
+        POSTGRES_PASSWORD: "postgres"
+        POSTGRES_DB: "chatBot"
+      ports:
+        - "5433:5432"

@@ -25,8 +25,11 @@
 import openai
 from flask import Flask, render_template, request
 
+openai.api_base = "https://api.pawan.krd/unfiltered/v1"
+
+openai.api_key = "pk-MgJvZIKENTlsUQEsDPgQnIkWATgBSitWtFRSacbgAtetSdNF"
+
 app = Flask(__name__)
-openai.api_key  = "sk-proj-svUGaBjxtyLkhJK9rO7gT3BlbkFJaPFZevE3Nseie5zEni1c"
 
 def get_completion(prompt, model="gpt-3.5-turbo"):
     messages = [{"role": "user", "content": prompt}]
@@ -49,4 +52,5 @@ def get_bot_response():
     return response
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
+
